@@ -1,0 +1,12 @@
+_Old/
+.DS_Store
+.env
+.azurite
+.vscode
+files/
+keys/
+node_modules
+dist/
+data/
+**/*.txt
+**/*.jar
