@@ -19,6 +19,11 @@ sudo ln -s /Applications/Docker.app/Contents/Resources/cli-plugins/docker-compos
 
 ## Start and Stop dockers
 ```bash
+# Kafka Broker info
+- INTERNAL://kafka:19092
+- EXTERNAL://127.0.0.1:9092
+- DOCKER://host.docker.internal:29092
+
 ## Start up
 ./up.sh
 
@@ -34,10 +39,8 @@ curl -i -X POST \
     -H  "Content-Type:application/json" \
     "http://localhost:8083/connectors/" \
     -d @register-mysql.json
-```
 
-## Get Connector info
-```bash
+# Get Connector info
 curl -X GET \
     "http://localhost:8083/connectors/inventory-connector" \
     | jq -r 
@@ -48,7 +51,7 @@ curl -X GET \
 docker-compose \
     -f docker-compose-mysql.yaml \
     exec kafka /kafka/bin/kafka-console-consumer.sh \
-    --bootstrap-server kafka:9092 \
+    --bootstrap-server kafka:19092 \
     --from-beginning \
     --property print.key=true \
     --topic dbserver1.inventory.customers \
@@ -92,4 +95,4 @@ DELETE FROM `inventory`.`customers` WHERE `id` = 1005;
 ```
 
 ## Kafka UI
-We can use [Kafka Drop UI](http://localhost:9000) for browsing message in Kafka
+We can use [Kafka Drop UI](http://localhost:8080) for browsing message in Kafka
