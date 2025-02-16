@@ -10,3 +10,4 @@ dist/
 data/
 **/*.txt
 **/*.jar
+mysql/

@@ -33,7 +33,7 @@ curl -i -X POST \
     -H "Accept:application/json" \
     -H  "Content-Type:application/json" \
     "http://localhost:8083/connectors/" \
-    -d @register-mysql.json \
+    -d @register-mysql.json
 ```
 
 ## Get Connector info
@@ -69,7 +69,26 @@ export MYSQL_PASSWORD=mysqlpw
 ./exec.sh 'MYSQL_PWD="${MYSQL_ROOT_PASSWORD}" mysql --user=root'
 
 ## MySql debezium login to inventory db
-./exec.sh 'mysql -u $MYSQL_USER -p$MYSQL_PASSWORD inventory'
+./exec.sh 'mysql -u $MYSQL_USER -p $MYSQL_PASSWORD inventory'
+
+## MySql stuff
+show grants for debezium;
+show global variables like 'binlog_format';
+
+SELECT * FROM `inventory`.`customers`;
+
+INSERT INTO `inventory`.`customers`
+    (`id`, `first_name`, `last_name`, `email`)
+VALUES
+    (1005, 'Nabil', 'Khan', 'mnabeel1@hotmail.com');
+
+UPDATE `inventory`.`customers`
+SET
+    `first_name` = 'Nabil M'
+WHERE 
+    `id` = 1005;
+
+DELETE FROM `inventory`.`customers` WHERE `id` = 1005;
 ```
 
 ## Kafka UI
